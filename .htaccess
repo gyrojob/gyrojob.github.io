@@ -1,47 +1,15 @@
-RewriteEngine on
-
-
-
-RewriteEngine On
-RewriteCond %{HTTP_HOST} !^(.*)\.gyrojob\.com$ [NC]
-RewriteRule ^(.*)$ http://www.gyrojob.com/$1 [R=301,L]
-
-
-#RewriteEngine On
-#RewriteCond %{HTTP_HOST} !^www\. [NC]
-#RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
-
-
-#RewriteCond %{HTTPS} !=on
-#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-
-
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ $1.php
-
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.*)$ $1.html
-
-
-RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?key=$1
-RewriteRule ^([a-zA-Z0-9_-]+)/$ index.php?key=$1
-
-
-RewriteRule ^(.*)\$ 404.php [nc]
-ErrorDocument 404 /404.html
-
-RewriteRule ^stt/a([a-zA-Z0-9_-]+)\.php$ st/z\.php?id=$1
-
-
-#error handling
-php_flag  log_errors on
-php_flag display_errors on
-php_value error_log  D:/home/gyrojbp6/public_html/php_error.log
-php_value error_reporting -1
-
-
-
+<IfModule mod_headers.c>
+ <FilesMatch "\.(ico|jpe?g|png|gif|swf|css|gz)$">
+ Header set Cache-Control "max-age=2592000, public"
+ </FilesMatch>
+ <FilesMatch "\.(js)$">
+ Header set Cache-Control "max-age=2592000, private"
+ </FilesMatch>
+<filesMatch "\.(html|htm)$">
+Header set Cache-Control "max-age=7200, public"
+</filesMatch>
+# Disable caching for scripts and other dynamic files
+<FilesMatch "\.(pl|php|cgi|spl|scgi|fcgi)$">
+Header unset Cache-Control
+</FilesMatch>
+</IfModule>
