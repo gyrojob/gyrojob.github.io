@@ -508,7 +508,7 @@ li.social-links a {
 -------------------------------------------------------------------*/
 
 .slider-bg-one {
-    background-image: url("/uploads/slider_01.jpg");
+    background-image: url("https://gyrojob.github.io/uploads/slider_01.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
